@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: database-app
+  datasource:
+    url: jdbc:mysql://localhost:3306/employee_app?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    openInView: false
+    show_sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      properties:
+        hibernate.cache.use_query_cache: false
+        hibernate.generate_statistics: true

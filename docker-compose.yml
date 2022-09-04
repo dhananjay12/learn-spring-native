@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  mariadb:
+    image: mariadb:10.9.2
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: employee_app
+      MYSQL_USER: backend
+      MYSQL_PASSWORD: password
+  rabbitmq:
+    image: 'bitnami/rabbitmq:3.9.22'
+    environment:
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "admin"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
