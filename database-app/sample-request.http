@@ -1,0 +1,13 @@
+### Send POST request with json body
+POST http://localhost:8080/employee
+Content-Type: application/json
+
+{
+  "fname": "John",
+  "lname": "Doesss",
+  "email": "john.doe@fakedomain.com",
+  "dob": "01-01-1990"
+}
+
+### GET
+GET http://localhost:8080/employee/6

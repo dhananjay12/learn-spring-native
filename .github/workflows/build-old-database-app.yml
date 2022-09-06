@@ -6,7 +6,7 @@ on:
       - old-database-app
 
 jobs:
-  build:
+  build-old-database-app:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,7 +23,7 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn -f database-app/pom.xml clean install
 
       - name: Build Images using JIB
-        run: mvn -Dmaven.test.skip=true package jib:build -Djib.to.auth.username=${{ secrets.DOCKERHUB_USERNAME }} -Djib.to.auth.password=${{ secrets.DOCKERHUB_KEY }} --Djib.to.image=dhananjay12/database-app-using-jib
+        run: mvn -f database-app/pom.xml -Dmaven.test.skip=true package jib:build -Djib.to.auth.username=${{ secrets.DOCKERHUB_USERNAME }} -Djib.to.auth.password=${{ secrets.DOCKERHUB_KEY }} -Djib.to.image=dhananjay12/database-app-using-jib
