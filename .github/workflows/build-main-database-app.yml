@@ -38,7 +38,7 @@ jobs:
         id: get_version
 
       - name: Build Native Image using buildpacks
-        run: mvn -f database-app/pom.xml spring-boot:build-image -Dspring-boot.build-image.imageName=dhananjay12/database-app-native-using-buildpack:${{ steps.get_version.outputs.DOCKER_TAG }}
+        run: mvn -f database-app/pom.xml spring-boot:build-image -Dspring-boot.build-image.imageName=dhananjay12/database-app-native-using-buildpacks:${{ steps.get_version.outputs.DOCKER_TAG }}
 
       - name: Push image
         run: docker push dhananjay12/database-app-native-using-buildpacks:${{ steps.get_version.outputs.DOCKER_TAG }}
