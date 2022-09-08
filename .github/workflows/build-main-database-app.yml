@@ -1,0 +1,44 @@
+name: Old Database App Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-main-database-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - name: Setup JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          server-id: github
+          settings-path: ${{ github.workspace }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_KEY }}
+
+      - name: Build with Maven
+        run: mvn -f database-app/pom.xml clean install
+
+      - name: Get version
+        run: |
+          DOCKER_TAG=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
+          echo "::set-output name=DOCKER_TAG::$DOCKER_TAG"
+        id: get_version
+
+      - name: Build Native Image using buildpacks
+        run: mvn -f database-app/pom.xml spring-boot:build-image -Dspring-boot.build-image.imageName=dhananjay12/database-app-native-using-buildpack:${{ steps.get_version.outputs.DOCKER_TAG }}
+
+      - name: Push image
+        run: docker push dhananjay12/database-app-native-using-buildpack:${{ steps.get_version.outputs.DOCKER_TAG }}

@@ -117,29 +117,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>com.google.cloud.tools</groupId>
-				<artifactId>jib-maven-plugin</artifactId>
-				<version>${jib-maven-plugin.version}</version>
-				<configuration>
-					<from>
-						<image>gcr.io/distroless/java17-debian11@sha256:f647b6ae9e3254dc9e766c4a767abe99d59f7d52fa9e0b9fe2d7db7281cb6d63</image>
-					</from>
-					<to>
-						<image>${project.artifactId}-using-jib</image>
-						<tags>
-							<tag>${project.version}</tag>
-						</tags>
-					</to>
-					<container>
-						<creationTime>USE_CURRENT_TIMESTAMP</creationTime>
-						<mainClass>com.example.demo.DatabaseAppApplication</mainClass>
-						<ports>
-							<port>8080</port>
-						</ports>
-					</container>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	<repositories>
