@@ -1,13 +1,27 @@
 ### Send POST request with json body
-POST http://localhost:8080/employee
+POST http://localhost:8081/employee
 Content-Type: application/json
 
 {
-  "fname": "John",
-  "lname": "Doesss",
-  "email": "john.doe@fakedomain.com",
+  "fname": "Spring",
+  "lname": "App",
+  "email": "spring.app@fakedomain.com",
   "dob": "01-01-1990"
 }
 
 ### GET
-GET http://localhost:8080/employee/6
+GET http://localhost:8082/employee/1
+
+### Send POST request with json body
+POST http://localhost:8082/employee
+Content-Type: application/json
+
+{
+  "fname": "Spring",
+  "lname": "Native",
+  "email": "spring.native@fakedomain.com",
+  "dob": "01-01-1990"
+}
+
+### GET
+GET http://localhost:8082/employee/1
