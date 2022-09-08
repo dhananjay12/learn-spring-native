@@ -33,7 +33,7 @@ jobs:
 
       - name: Get version
         run: |
-          DOCKER_TAG=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
+          DOCKER_TAG=$( mvn -f database-app/pom.xml help:evaluate -Dexpression=project.version -q -DforceStdout )
           echo "::set-output name=DOCKER_TAG::$DOCKER_TAG"
         id: get_version
 
