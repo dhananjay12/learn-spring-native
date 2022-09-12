@@ -26,13 +26,14 @@ services:
         condition: service_healthy
   spring-native-app:
     image: dhananjay12/database-app-native-using-buildpacks:0.0.1
-    restart: on-failure
+    #restart: on-failure
     ports:
       - "8082:8080"
     environment:
       spring.datasource.url: jdbc:mysql://mysql:3306/employee_app?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
       spring.datasource.username: root
       spring.datasource.password: root
+      #spring.jpa.database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     depends_on:
       mysql:
         condition: service_healthy
